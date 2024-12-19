@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор колонок</title>
+</head>
+<body>
+    <h2>Выберите параметры для построения графика</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="x_column">Ось X:</label>
+        <select name="x_column" id="x_column">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="y_column">Ось Y:</label>
+        <select name="y_column" id="y_column">
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="metric">Метрика:</label>
+        <select name="metric" id="metric">
+            {% for metric in metrics %}
+                <option value="{{ metric }}">{{ metric|capfirst }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Построить график</button>
+    </form>
+</body>
+</html>
